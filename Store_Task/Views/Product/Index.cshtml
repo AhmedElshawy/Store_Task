@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Store_Task.Models.Product>
+
+@{
+}
+<div class="container">
+	<div class="row mb-5">
+		<div class="col-12">
+			<form asp-action="Index" method="post">
+				<div class="row">
+					<div class="col-4">					
+						<div class="form-group">
+							<label for="name">Search by product name:</label>
+							<input type="text" name="name" class="form-control" id="name">
+						</div>
+					</div>
+				</div>
+				<div class="row mt-2">
+					<p>Enter min and Max Price:</p>													
+					<div class="col-5 d-flex justify-content-between">						
+					<div class="form-group">
+						<label for="min">min price:</label>
+						<input type="number" name="min" class="form-control" id="min">
+					</div>
+					<div class="form-group">
+						<label for="max">max price:</label>
+						<input type="number" name="max" class="form-control" id="max">
+					</div>
+					</div>               
+				</div>
+				<div class="row mt-2">
+					<div class="col-4">					
+						<div class="form-check">
+							<input type="checkbox" name="hasStock" value="true" class="form-check-input" id="exampleCheck1">
+							<label class="form-check-label" for="exampleCheck1">Has Stock</label>
+						</div>
+					</div>
+				</div>
+				<br />
+                <button type="submit" class="btn btn-primary">Applay filter</button>								
+            </form>
+			<br />
+			<a class="btn btn-outline-info" asp-action="DownloadExcleFile">Export to excel</a>
+		</div>
+	</div>
+	<div class="row">
+		@foreach (var item in Model)
+		{
+			<div class="col-4">
+				<div class="card" style="width: 18rem ;">
+					<img src="~/Images/@item.Image" class="card-img-top" alt="Not founed">
+					<div class="card-body">
+						<h5 class="card-title">@item.Name</h5>
+						<p class="card-text">@item.Price <span>LE</span></p>
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+			</div>			
+		}		
+	</div>
+</div>
